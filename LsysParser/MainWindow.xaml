@@ -1,0 +1,81 @@
+﻿<Window x:Class="LsysParser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LsysParser"
+        mc:Ignorable="d"
+        Title="Проект: парсер" Height="700" Width="1100" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <Grid DataContext="{Binding Project}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.ColumnSpan="2">
+            <ToolBar Margin="3">
+                <Button x:Name="btn_start" Click="btn_start_Click" Content="Старт"/>
+                <Button x:Name="btn_pause" Content="Пауза" Click="btn_pause_Click"/>
+                <Button x:Name="btn_stop" Content="Стоп" Click="btn_stop_Click"/>
+                <Button x:Name="btn_missed" Content="Пропущеные товары" Click="btn_missed_Click"/>
+
+                <Separator/>
+
+                <Button x:Name="btn_showErrors" Content="Список оишбок" Click="btn_showErrors_Click"/>
+
+                <Button x:Name="btn_save" Content="Сохранить" Click="btn_save_Click"/>
+                <Button x:Name="btn_checkErrors" Content="Проверить ошибки" Click="btn_checkErrors_Click"/>
+                <Button x:Name="btn_dwlImages" Content="Скачать картинки" Click="btn_dwlImages_Click"/>
+            </ToolBar>
+        </DockPanel>
+
+        <Grid Grid.Row="1" Margin="5 0 5 0">
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                    <Setter Property="FontFamily" Value="Arial"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Пройдено товаров:"/>
+            <Label Content="Сохранено товаров:" Grid.Row="1"/>
+            <Label Content="Ошибок:" Grid.Row="2"/>
+
+            <Label Content="{Binding TotalCheckedProducts_Counter}" Grid.Column="1"/>
+            <Label Content="{Binding SavedProducts_Counter}" Grid.Row="1" Grid.Column="1"/>
+            <Label Content="{Binding Errors_Counter}" Grid.Row="2" Grid.Column="1"/>
+
+            <Border Background="Gray" Height="1" Grid.Row="3" Grid.ColumnSpan="2"/>
+
+            <Label Content="Статус:" Padding="5 5 1 5" Grid.Row="4"
+                   HorizontalAlignment="Left"/>
+
+            <TextBlock Text="{Binding Status}" MaxWidth="250" Padding="1 5 5 5"
+                       TextWrapping="Wrap" Grid.Row="5" Grid.ColumnSpan="2"/>
+        </Grid>
+
+        <TabControl Grid.Row="1" Grid.Column="1" Margin="3" SelectedIndex="1">
+            <TabItem Header="Лог">
+                <TextBox x:Name="tb_log" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
