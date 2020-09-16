@@ -1,3 +1,3 @@
 # LsysParser
 
-Парсер сайта lsys.ru. Парсит, сохраняетс в excel
+Парсер сайта manders.ru. Парсит, сохраняетс в excel
